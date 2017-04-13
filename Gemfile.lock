@@ -145,12 +145,16 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  kitchen-ansible!
-  kitchen-docker!
-  kitchen-inspec!
-  kitchen-pester!
-  kitchen-vagrant!
-  vagrant-winrm!
+  inspec (~> 1)
+  kitchen-ansible
+  kitchen-docker
+  kitchen-inspec
+  kitchen-pester
+  kitchen-vagrant
+  test-kitchen
+  vagrant-winrm
+  winrm
+  winrm-fs
 
 BUNDLED WITH
    1.14.1
