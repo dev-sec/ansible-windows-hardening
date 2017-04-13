@@ -8,6 +8,7 @@ group :local do
   gem 'vagrant-winrm'
 end
 
+gem 'inspec', '~> 1'
 gem 'kitchen-vagrant'
 gem 'kitchen-inspec'
 gem 'kitchen-ansible'
