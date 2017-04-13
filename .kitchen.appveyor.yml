@@ -19,7 +19,7 @@ provisioner:
   ansible_verbose: true
   ansible_diff: true
   hosts: all
-  roles_path: ../ansible-windows-hardening/
+  roles_path: c:\projects\windows-hardening
   http_proxy: <%= ENV['http_proxy'] || nil %>
   https_proxy: <%= ENV['https_proxy'] || nil %>
   playbook: default.appveyor.yml
