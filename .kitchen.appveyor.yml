@@ -24,5 +24,8 @@ provisioner:
   https_proxy: <%= ENV['https_proxy'] || nil %>
   playbook: default.appveyor.yml
 
+platforms:
+- name: windows-2012R2
+
 suites:
   - name: default
