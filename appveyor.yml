@@ -27,7 +27,7 @@ install:
   - ps: bundler --version
 
 build_script:
-  - bundle install || bundle install || bundle install
+  - bundle install --without=local || bundle install --without=local || bundle install --without=local
 
 test_script:
   - bundle exec kitchen verify

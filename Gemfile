@@ -1,10 +1,14 @@
 source 'https://rubygems.org' do
-  gem 'kitchen-ansible'
+
+group :local do
   gem 'kitchen-docker'
-  gem 'kitchen-vagrant'
-  gem 'kitchen-inspec'
   gem 'winrm'
   gem 'winrm-fs'
   gem 'kitchen-pester'
   gem 'vagrant-winrm'
 end
+
+gem 'kitchen-vagrant'
+gem 'kitchen-inspec'
+gem 'kitchen-ansible'
+gem 'test-kitchen'
