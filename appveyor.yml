@@ -1,0 +1,36 @@
+version: "master-{build}"
+
+image:
+- Visual Studio 2015 # Windows 2012R2
+
+environment:
+  winrm_user: test_user
+  winrm_pass: Pass@word1
+  winrm_port: 5985
+  KITCHEN_YAML: c:\projects\windows-hardening\.kitchen.appveyor.yml
+  SSL_CERT_FILE: c:\projects\windows-hardening\certs.pem
+
+clone_folder: c:\projects\windows-hardening
+clone_depth: 1
+branches:
+  only:
+    - master
+
+install:
+  - systeminfo
+  - winrm quickconfig -q
+  - ps: net user /add $env:winrm_user $env:winrm_pass
+  - ps: net localgroup administrators $env:winrm_user /add
+  - ps: $env:PATH="C:\Ruby$env:ruby_version\bin;$env:PATH"
+  - ps: Write-Host $env:PATH
+  - ps: ruby --version
+  - ps: gem --version
+  - ps: gem install bundler --quiet --no-ri --no-rdoc
+  - ps: Invoke-WebRequest -Uri http://curl.haxx.se/ca/cacert.pem -OutFile c:\projects\windows-hardening\certs.pem
+  - ps: bundler --version
+
+build_script:
+  - bundle install || bundle install || bundle install
+
+test_script:
+  - bundle exec kitchen verify
