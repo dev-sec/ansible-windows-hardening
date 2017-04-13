@@ -12,9 +12,6 @@ environment:
 
 clone_folder: c:\projects\windows-hardening
 clone_depth: 1
-branches:
-  only:
-    - master
 
 install:
   - systeminfo
