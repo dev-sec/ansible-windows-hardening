@@ -11,7 +11,18 @@ verifier:
   name: inspec
 
 provisioner:
-  name: shell
+  name: ansible_playbook
+  hosts: all
+  require_ansible_repo: false
+  require_chef_for_busser: false
+  require_ruby_for_busser: false
+  ansible_verbose: true
+  ansible_diff: true
+  hosts: all
+  roles_path: ../ansible-windows-hardening/
+  http_proxy: <%= ENV['http_proxy'] || nil %>
+  https_proxy: <%= ENV['https_proxy'] || nil %>
+  playbook: default.appveyor.yml
 
 suites:
   - name: default
