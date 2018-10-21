@@ -28,54 +28,21 @@
     type: dword
 
 - name: Account Logon Audit Log | windows-audit-203
-  win_command: AuditPol /Set /Category:\"Account Logon\" /Failure:Enable /Success:Enable
-  register: accountLogonAudit
-  args:
-    creates: C:\accountLogonAudit.lock
-
-- name: Create accountLogonAudit.lock if account audit log was activated
-  win_copy:
-    dest: C:\accountLogonAudit.lock
-    content: ""
-    force: no
-  when: accountLogonAudit
+  win_audit_policy_system:
+    subcategory: "Other Account Logon Events"
+    audit_type: success, failure
 
 - name: Audit Application Group Management | windows-audit-204
-  win_command: AuditPol /Set /SubCategory:\"Application Group Management\" /Failure:Enable /Success:Enable
-  register: appGroupMngmtAudit
-  args:
-    creates: C:\appGroupMngmtAudit.lock
-
-- name: Create appGroupMngmtAudit.lock if group manangement audit log was activated
-  win_copy:
-    dest: C:\appGroupMngmtAudit.lock
-    content: ""
-    force: no
-  when: appGroupMngmtAudit
+  win_audit_policy_system:
+    subcategory: "Application Group Management"
+    audit_type: success, failure
 
 - name: Audit Computer Account Management | windows-audit-205
-  win_command: AuditPol /Set /SubCategory:\"Computer Account Management\" /Failure:Enable /Success:Enable
-  register: appAccountMngmtAudit
-  args:
-    creates: C:\appAccountMngmtAudit.lock
-
-- name: Create appAccountMngmtAudit.lock if computer account manangement audit log was activated
-  win_copy:
-    dest: C:\appAccountMngmtAudit.lock
-    content: ""
-    force: no
-  when: appAccountMngmtAudit
-
+  win_audit_policy_system:
+    subcategory: "Computer Account Management"
+    audit_type: success, failure
 
 - name: Audit Application Group Management | windows-audit-206
-  win_command: AuditPol /Set /SubCategory:\"Distribution Group Management\" /Failure:Enable /Success:Enable
-  register: distGroupMngmtAudit
-  args:
-    creates: C:\distGroupMngmtAudit.lock
-
-- name: Create distGroupMngmtAudit.lock if dist group manangement audit log was activated
-  win_copy:
-    dest: C:\distGroupMngmtAudit.lock
-    content: ""
-    force: no
-  when: distGroupMngmtAudit
+  win_audit_policy_system:
+    subcategory: "Distribution Group Management"
+    audit_type: success, failure

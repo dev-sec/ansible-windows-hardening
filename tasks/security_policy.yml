@@ -15,5 +15,47 @@
   register: security_policy
 
 - name: load gpo configuration locally
-  raw: "secedit /configure /cfg {{win_security_policy_template_location}}\\ansible_windows_hardening_security_policy.inf /db {{ win_security_policy_database_location }}\\ansible_windows_hardening.db /quiet"
-  when: security_policy.changed
+  raw: "secedit /configure /cfg {{win_security_policy_template_location}}\\ansible_windows_hardening_security_policy.inf /db {{ win_security_policy_database_location }}\\ansible_windows_hardening.db"
+  #when: security_policy.changed
+
+- name: Security Policy | Set Account lockout duration to 15 or more minutes | cis-account-lockout-duration-1.2.1
+  win_security_policy:
+    section: "System Access"
+    key: LockoutDuration
+    value: "{{ win_security_LockoutDuration }}"
+
+- name: Security Policy | Set Account lockout threshold to 10 or fewer invalid logon attempts but not 0 | cis-account-lockout-threshold-1.2.2
+  win_security_policy:
+    section: System Access
+    key: LockoutBadCount
+    value: "{{ win_security_LockoutBadCount }}"
+
+- name: Security Policy | Set Reset account lockout counter after to 15 or more minutes | cis-reset-account-lockout-1.2.3
+  win_security_policy:
+    section: System Access
+    key: ResetLockoutCount
+    value: "{{ win_security_ResetLockoutCount }}"
+
+- name: Security Policy | Windows Remote Desktop Configured to Only Allow System Administrators Access | windows-account-100
+  win_security_policy:
+    section: Privilege Rights
+    key: SeRemoteInteractiveLogonRight
+    value: "{{ win_security_SeRemoteInteractiveLogonRight }}"
+
+- name: Security Policy | Windows Default Guest Account is Disabled | windows-account-101
+  win_security_policy:
+    section: Privilege Rights
+    key: EnableGuestAccount
+    value: "{{ win_security_EnableGuestAccount }}"
+
+- name: Security Policy | Password must meet complexity requirements | windows-account-102
+  win_security_policy:
+    section: Privilege Rights
+    key: PasswordComplexity
+    value: "{{ win_security_PasswordComplexity }}"
+
+- name: Security Policy | Minimum Windows Password Length Configured to be at Least 8 Characters | windows-account-103
+  win_security_policy:
+    section: Privilege Rights
+    key: MinimumPasswordLength
+    value: "{{ win_security_MinimumPasswordLength  }}"

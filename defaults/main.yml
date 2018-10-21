@@ -9,6 +9,8 @@ win_security_PasswordComplexity: 1
 win_security_LockoutBadCount: 4
 win_security_ResetLockoutCount: 15
 win_security_LockoutDuration: 15
+win_security_MinimumPasswordLength: 8
+win_security_EnableGuestAccount: 0
 
 # Security policy rights / privileges settings.
 win_security_SeRemoteInteractiveLogonRight: '*S-1-5-32-544'

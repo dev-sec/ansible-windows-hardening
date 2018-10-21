@@ -1,7 +1,7 @@
 ---
 driver:
   name: vagrant
-  gui: false
+  gui: true
   linked_clone: true
 
 platforms:
@@ -30,32 +30,39 @@ platforms:
       name: shell
       command: exit 0
 
-  - name: windows-2012R2
+  - name: win-2012R2
     driver_config:
       box: mwrock/Windows2012R2
       communicator: winrm
+      customize:
+        audio: none
       network:
       - [ 'private_network', { ip: '172.28.128.11' } ]
        # needed to force provision of the vagrantfile
       provision: true
+      vm_hostname: win2012
       # needed to run the ConfigureRemotingForAnsible.ps1
-      vagrantfiles:
-        - vagrant_windows_target.rb
+      vagrantfile_erb: Vagrantfile_win_2016.erb
     transport:
       name: winrm
     verifier:
       name: inspec
+      inspec_tests:
+        - https://github.com/dev-sec/windows-baseline
     provisioner:
       name: shell
 
-  - name: windows-2016
+  - name: win-2016
     driver_config:
       box: mwrock/Windows2016
       communicator: winrm
+      customize:
+        audio: none
       network:
       - [ 'private_network', { ip: '172.28.128.12' } ]
        # needed to force provision of the vagrantfile
       provision: true
+      vm_hostname: win2016
       # needed to run the ConfigureRemotingForAnsible.ps1
       vagrantfiles:
         - vagrant_windows_target.rb
@@ -63,8 +70,10 @@ platforms:
       name: winrm
     verifier:
       name: inspec
+      inspec_tests:
+        - https://github.com/dev-sec/windows-baseline
     provisioner:
       name: shell
 
 suites:
-  - name: default
+  - name: win
