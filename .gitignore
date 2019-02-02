@@ -1,2 +1,3 @@
-kitchen/.kitchen
 .kitchen
+hosts
+Gemfile.lock
