@@ -1,30 +1,30 @@
 ---
-- include: access.yml
+- import_tasks: access.yml
   tags: access
 
-- include: account.yml
+- import_tasks: account.yml
   tags: account
 
-- include: audit.yml
+- import_tasks: audit.yml
   tags: audit
 
-- include: ie.yml
+- import_tasks: ie.yml
   tags: ie
 
-- include: misc.yml
+- import_tasks: misc.yml
   tags: misc
 
-- include: password_policy.yml
+- import_tasks: password_policy.yml
   tags: password_policy
 
-- include: powershell.yml
+- import_tasks: powershell.yml
   tags: powershell
 
-- include: rdp.yml
+- import_tasks: rdp.yml
   tags: rdp
 
-- include: security_policy.yml
+- import_tasks: security_policy.yml
   tags: security_policy
 
-- include: user_rights.yml
+- import_tasks: user_rights.yml
   tags: user_rights
