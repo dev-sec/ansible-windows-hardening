@@ -1,10 +1,11 @@
 # windows-hardening (Ansible Role)
 
-## Description
 
-**This role is in a very early stage and may not work correctly or secure your servers the way you expect it! Please do not rely on it securing you Windows servers (yet).**
+**Attention:** This role has been migrated to our hardening-collection:
+* https://github.com/dev-sec/ansible-os-hardening/
+* https://galaxy.ansible.com/devsec/hardening
 
-These roles ensure that a Windows 2012 R2 or Windows 2016 system is compliant with the [DevSec Windows Baseline](https://github.com/dev-sec/windows-baseline).
+Please open any issues and pull requests there!
 
 ## Requirements
 
